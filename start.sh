@@ -1,9 +1,10 @@
-# Pehle sab files ko add karo
-git add .
+#!/bin/bash
 
-# Ek commit banao
-git commit -m "Initial commit: Added Docker setup for Render.com"
+# Start SSH service
+service ssh start
 
-# Branch ko push karo
-git branch -M main
-git push -u origin main
+# Start a basic web server to keep Render happy
+nohup python3 -m http.server 80 &
+
+# Keep container running
+tail -f /dev/null
