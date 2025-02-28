@@ -3,8 +3,5 @@
 # Start SSH service
 service ssh start
 
-# Start TTYD (Web-based Terminal)
-nohup ttyd -p 7681 bash &
-
-# Keep container running
-tail -f /dev/null
+# Start TTYD (Web-based Terminal) in foreground
+ttyd -p 7681 bash
