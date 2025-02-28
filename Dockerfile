@@ -10,7 +10,7 @@ RUN useradd -m -s /bin/bash admin && echo 'admin:root' | chpasswd && adduser adm
 RUN mkdir /var/run/sshd
 
 # Expose SSH port
-EXPOSE 22
+EXPOSE 22 80
 
 # Keep container running with a background process
 CMD ["/usr/sbin/sshd", "-D"]
