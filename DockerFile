@@ -14,3 +14,8 @@ EXPOSE 22
 
 # Keep container running with a background process
 CMD ["/usr/sbin/sshd", "-D"]
+
+# Additional files for Render deployment
+COPY render.yaml /app/render.yaml
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
