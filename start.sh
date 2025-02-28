@@ -3,8 +3,8 @@
 # Start SSH service
 service ssh start
 
-# Start Gotty (Web-based Terminal)
-nohup gotty -w -p 8080 bash &
+# Start TTYD (Web-based Terminal)
+nohup ttyd -p 7681 bash &
 
 # Keep container running
 tail -f /dev/null
