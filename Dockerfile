@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 # Install necessary packages
-RUN apt update && apt install -y openssh-server nano wget curl sudo
+RUN apt update && apt install -y openssh-server nano wget curl sudo python3
 
 # Create a user with root access
 RUN useradd -m -s /bin/bash admin && echo 'admin:root' | chpasswd && adduser admin sudo
@@ -9,13 +9,12 @@ RUN useradd -m -s /bin/bash admin && echo 'admin:root' | chpasswd && adduser adm
 # Setup SSH for remote access
 RUN mkdir /var/run/sshd
 
-# Expose SSH port
-EXPOSE 22 80
+# Expose ports for SSH and Web Service
+EXPOSE 22 10000
 
-# Keep container running with a background process
-CMD ["/usr/sbin/sshd", "-D"]
+# Copy start script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-# Additional files for Render deployment
-COPY render.yaml /app/render.yaml
-COPY start.sh /app/start.sh
-RUN chmod +x /app/start.sh
+# Start script
+CMD ["/start.sh"]
