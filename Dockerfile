@@ -1,14 +1,11 @@
 FROM ubuntu:latest
 
 # Install necessary packages
-RUN apt update && apt install -y openssh-server nano wget curl sudo python3 build-essential cmake git
+RUN apt update && apt install -y openssh-server nano wget curl sudo python3
 
-# Install ttyd (Web-based Terminal)
-RUN git clone https://github.com/tsl0922/ttyd.git && \
-    cd ttyd && \
-    mkdir build && cd build && \
-    cmake .. && make && make install && \
-    cd ../.. && rm -rf ttyd
+# Install pre-built ttyd binary
+RUN wget https://github.com/tsl0922/ttyd/releases/download/1.6.3/ttyd.x86_64 -O /usr/local/bin/ttyd && \
+    chmod +x /usr/local/bin/ttyd
 
 # Create a user with root access
 RUN useradd -m -s /bin/bash admin && echo 'admin:root' | chpasswd && adduser admin sudo
