@@ -1,8 +1,12 @@
-# Apni project directory me jao
-cd /path/to/your/project
-
-# Git init karo
-git init
-
-# GitHub repository ko add karo
-git remote add origin https://github.com/your-username/render-ubuntu-docker.git
+services:
+  - type: web
+    name: ubuntu-vps
+    env: docker
+    repo: https://github.com/your-username/render-ubuntu-docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: "10000"
