@@ -3,8 +3,8 @@
 # Start SSH service
 service ssh start
 
-# Start a lightweight web service on port 10000
-nohup python3 -m http.server 10000 &
+# Start Gotty (Web-based Terminal)
+nohup gotty -w -p 8080 bash &
 
 # Keep container running
 tail -f /dev/null
